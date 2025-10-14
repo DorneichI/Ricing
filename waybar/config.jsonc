@@ -1,0 +1,67 @@
+{
+	"font": "SpaceMono Nerd Font 10",
+	// Position the bar at the top of the screen 
+	"position": "top",
+	"layer": "top",
+
+	// Position the modules in the bar
+	"modules-left": ["custom/linux"],
+	"modules-center": ["clock"],
+	"modules-right": ["bluetooth", "network", "battery"],
+
+        // Linux appearance
+	"custom/linux": {
+		"exec": "echo ''",  // battery icon, wifi icon, etc.
+		"interval": 0,
+		"tooltip": false,
+		"on-click": "kitty",
+	},
+	
+	// Clock appearance
+	"clock": {
+                "tooltip": false,
+	},
+
+	// Bluetooth appearance
+	"bluetooth": {
+		"format-off": "󰂲",
+		"format-on": "󰂯",
+		"format-connected": "󰂰", 
+		"tooltip": true,
+		"tooltip-format": "{controller_alias}\n{num_connections} connected",
+		"on-click": "kitty -e bluetoothctl",
+	},
+
+	// Nework appearance
+	"network": {
+		"format-wifi": "󰖩",
+		"format-ethernet": "󰈀",
+		"format-disconnected": "󰤯",
+		"on-click": "kitty -e nmtui",
+		"tooltip": true,
+		"tooltip-format": "{ifname} {ipaddr}",
+		"tooltip-format-disconnected": "Not connected",
+	},
+
+	// Battery appearance
+	"battery": {
+		"states": {
+			"great": 100,
+			"good": 90,
+			"works": 50,
+			"ehh": 25,
+			"critical": 10,
+		},
+		"format-great": " ",
+		"format-good": " ",
+                "format-works": " ",
+                "format-ehh": " ",
+                "format-critical": "  {capacity}%",
+
+		"format-charging": "󱐋",
+		"format-full": " ",
+
+		"tooltip": true,
+		"tooltip-format": "<tt><small>{capacity}%</small></tt>",
+	},
+}
