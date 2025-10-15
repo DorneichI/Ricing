@@ -1,0 +1,11 @@
+content_halign = center
+
+#window {
+	border-radius: 0px;
+	border: 1px solid #1793d1;
+}
+
+#entry:selected {
+	background-color: #1793d1;
+	color: #ffffff;
+}
