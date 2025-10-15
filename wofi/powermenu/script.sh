@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
+LOCKFILE="/tmp/wofi-powermenu.lock"
+
+if [ -e "$LOCKFILE" ]; then
+    exit 0
+fi
+
+trap "rm -f '$LOCKFILE'" EXIT
+touch "$LOCKFILE"
+
 CHOICES="Shutdown
 Reboot
 Logout"
@@ -10,7 +19,8 @@ CHOICE=$(echo "$CHOICES" | wofi \
 	--dmenu \
 	--hide-search \
 	--lines "$NUM_LINES" \
-	--style ~/.config/wofi/powermenu/style.css)
+	--style ~/.config/wofi/powermenu/style.css\
+	--cache-file /dev/null)
 
 case "$CHOICE" in
 	Shutdown)
