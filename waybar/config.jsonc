@@ -7,19 +7,40 @@
 	// Position the modules in the bar
 	"modules-left": ["custom/linux"],
 	"modules-center": ["clock"],
-	"modules-right": ["bluetooth", "network", "battery"],
+	"modules-right": ["pulseaudio", "bluetooth", "network", "battery"],
 
         // Linux appearance
 	"custom/linux": {
 		"exec": "echo ''",  // battery icon, wifi icon, etc.
 		"interval": 0,
 		"tooltip": false,
-		"on-click": "kitty",
+		"on-click": "~/.config/wofi/powermenu/script.sh",
 	},
 	
 	// Clock appearance
 	"clock": {
                 "tooltip": false,
+	},
+
+	"pulseaudio": {
+		"format": "{icon}",
+		"format-bluetooth": "{icon}",
+		"format-muted": "󰝟",
+		"format-icons": {
+			"headphones": "",
+			"handsfree": "󰋎",
+			"headset": "󰋎",
+			"phone": "",
+			"portable": "",
+			"car": "",
+			"default": ["", "", ""]
+		},
+		"on-click": "pavucontrol",          // Opens the audio control GUI
+		//"on-scroll-up": "pamixer -i 5",     // Volume up
+		//"on-scroll-down": "pamixer -d 5",   // Volume down
+		//"on-click-right": "pamixer -t",     // Toggle mute
+		//"scroll-step": 5,
+		"tooltip": true
 	},
 
 	// Bluetooth appearance
